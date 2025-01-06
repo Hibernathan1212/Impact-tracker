@@ -22,7 +22,7 @@ struct SimpleProgressView: View {
                 Text("Progress").font(.title3)
                 Chart(entries) { entry in
                     Plot {
-                        LineMark(x: .value("Day", entry.date, unit: .day),
+                        BarMark(x: .value("Day", entry.date, unit: .day),
                                  y: .value("Carbon Footprint", entry.carbonFootprint))
                     }
                     .interpolationMethod(.catmullRom)

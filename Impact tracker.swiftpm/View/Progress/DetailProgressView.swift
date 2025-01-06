@@ -24,7 +24,7 @@ struct DetailProgressView: View {
                 if selection.isComponent {
                     Chart(entries) { entry in
                         Plot {
-                            LineMark(x: .value("Day", entry.date, unit: .day),
+                            BarMark(x: .value("Day", entry.date, unit: .day),
                                      y: .value("Value", entry.components[selection.componentSelection!] ?? 0 ))
                         }
                         .interpolationMethod(.catmullRom)
@@ -48,7 +48,7 @@ struct DetailProgressView: View {
                 } else {
                     Chart(entries) { entry in
                         Plot {
-                            LineMark(x: .value("Day", entry.date, unit: .day),
+                            BarMark(x: .value("Day", entry.date, unit: .day),
                                      y: .value("Value", selection.getOverviewValue(entry: entry)))
                         }
                         .interpolationMethod(.catmullRom)
