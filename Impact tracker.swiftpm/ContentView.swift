@@ -71,8 +71,9 @@ struct ContentView: View {
                                 .frame(width: 60, height: 60)
                                 .background(Color.blue)
                                 .clipShape(Circle())
-                                .shadow(radius: 10)
+//                                .shadow(radius: 10)
                         }
+//                        .shadow(radius: 10)
                         .padding()
                     }
                 }

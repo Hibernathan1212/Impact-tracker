@@ -23,9 +23,6 @@ struct DetailProgressView: View {
             } else {
                 if selection.isComponent {
                     Chart(entries) { entry in
-//                        if entry.components[selection.componentSelection!] == nil {
-//                            continue
-//                        }
                         Plot {
                             LineMark(x: .value("Day", entry.date, unit: .day),
                                      y: .value("Value", entry.components[selection.componentSelection!] ?? 0 ))
@@ -46,7 +43,8 @@ struct DetailProgressView: View {
                         }
                     }
                     .padding()
-                    .frame(height: 320)
+                    .frame(height: 300)
+                    
                 } else {
                     Chart(entries) { entry in
                         Plot {
@@ -69,7 +67,7 @@ struct DetailProgressView: View {
                         }
                     }
                     .padding()
-                    .frame(height: 320)
+                    .frame(height: 300)
                 }
             }
                         
@@ -116,11 +114,12 @@ struct DetailProgressView: View {
                 Text("\(selection.displayName)")
                 Image(systemName: "chevron.up.chevron.down")
             }
-            .pickerStyle(.automatic)
             
             Text("\(selection.description)")
+                .font(.system(size: 24))
                 .padding()
-                .padding()
+            Spacer()
+            
         }
     }
 }
