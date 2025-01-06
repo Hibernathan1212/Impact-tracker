@@ -2,17 +2,17 @@
 //  File.swift
 //  Impact tracker
 //
-//  Created by Nathan Thurber on 2/1/25.
+//  Created by Nathan Thurber on 6/1/25.
 //
 
 import Foundation
 import SwiftUI
 
-struct AddEntryView: View {
-    @Binding var entries: [Entry]
+struct EditEntryView: View {
+    @Binding var entry: Entry
     @Environment(\.dismiss) var dismiss
     @State private var showCategoryMenu = false
-    @State private var components = [Component : Double]()  // Changed to @State
+    @State private var components: [Component : Double]  // Changed to @State
     
 //    @State private var title: String = ""
 //    @State private var content: String = ""
@@ -22,12 +22,6 @@ struct AddEntryView: View {
     
     @State private var hasUnsavedChanges: Bool = false
     
-    var currentDateTitle: String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        return formatter.string(from: Date())
-    }
-
 var body: some View {
         NavigationStack {
             ZStack {  // Add ZStack to layer the gesture view
@@ -39,7 +33,7 @@ var body: some View {
                 
                 VStack {
                     List {
-                        ForEach(Array(components.keys), id: \.self) { key in
+                        ForEach(Array(entry.components.keys), id: \.self) { key in
                             HStack {
                                 Text(key.displayName)
                                     .font(.headline)
@@ -216,34 +210,38 @@ var body: some View {
                             .background(Color.gray.opacity(0.2))
                             .cornerRadius(10)
                     }
-                    .padding()
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
-                        focusedField = nil  // Dismiss keyboard
-                        dismiss()
-                    }
-                }
-                
-                ToolbarItem(placement: .principal) {
-                    Text(currentDateTitle)
-                        .font(.headline)
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Save") {
-                        focusedField = nil  // Dismiss keyboard
-                        let newEntry = Entry(date: Date(), components: components)
-                        entries.append(newEntry)
-                        DataManager.shared.save(entries: entries)
-                        dismiss()
-                    }
-                }
-            }
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    Button("Cancel") {
+//                        focusedField = nil  // Dismiss keyboard
+//                        dismiss()
+//                    }
+//                }
+//                
+//                ToolbarItem(placement: .principal) {
+//                    
+//                    let formatter = DateFormatter()
+//                    formatter.dateStyle = .medium
+//                    
+//                    Text(formatter.string(from: entry.date))
+//                        .font(.headline)
+//                }
+//                
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Button("Save") {
+//                        focusedField = nil  // Dismiss keyboard
+//                        let newEntry = Entry(date: Date(), components: components)
+////                        entries.append(newEntry)
+//                        entry.components = components
+////                        DataManager.shared.save(entries: entries)
+//                        dismiss()
+//                    }
+//                }
+//            }
         }
         .ignoresSafeArea(.keyboard)  // Handle keyboard better
     }
@@ -254,25 +252,25 @@ var body: some View {
 }
 
 // Modified CategoryMenu to use Component enum
-struct CategoryMenu: View {
-    @Binding var selectedSubEntries: [EntryComponent]
-    
-    var body: some View {
-        VStack {
-            Text("Select a Category")
-                .font(.headline)
-                .padding()
-            
-            List {
-                ForEach(Component.allCases) { componentType in
-                    Button(componentType.displayName) {
-                        selectedSubEntries.append(
-                            EntryComponent(type: componentType, value: 0)
-                        )
-                    }
-                }
-            }
-        }
-        .frame(width: 300, height: 400)
-    }
-}
+//struct CategoryMenu: View {
+//    @Binding var selectedSubEntries: [EntryComponent]
+//    
+//    var body: some View {
+//        VStack {
+//            Text("Select a Category")
+//                .font(.headline)
+//                .padding()
+//            
+//            List {
+//                ForEach(Component.allCases) { componentType in
+//                    Button(componentType.displayName) {
+//                        selectedSubEntries.append(
+//                            EntryComponent(type: componentType, value: 0)
+//                        )
+//                    }
+//                }
+//            }
+//        }
+//        .frame(width: 300, height: 400)
+//    }
+//}

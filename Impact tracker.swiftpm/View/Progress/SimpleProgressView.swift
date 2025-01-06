@@ -21,9 +21,11 @@ struct SimpleProgressView: View {
             VStack {
                 Text("Progress").font(.title3)
                 Chart(entries) { entry in
-                    LineMark(x: .value("Day", entry.date),
-                             y: .value("Carbon Footprint", entry.carbonFootprint))
-                    
+                    Plot {
+                        LineMark(x: .value("Day", entry.date),
+                                 y: .value("Carbon Footprint", entry.carbonFootprint))
+                    }
+                    .interpolationMethod(.catmullRom)
                 }
                 .chartXAxis {
                     AxisMarks { _ in

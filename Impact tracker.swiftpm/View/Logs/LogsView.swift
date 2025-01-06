@@ -10,6 +10,9 @@ import SwiftUI
 
 struct LogsView: View {
     @Binding var entries: [Entry]
+    
+    @State var showEditEntry = false
+
 //    @State private var showAddEntry = false
 //    @State private var showSettings = false
 
@@ -18,14 +21,9 @@ struct LogsView: View {
             ZStack {
                 List(entries) { entry in
                     Section {
-                        NavigationLink(destination: JournalDetailView(entry: entry)) {
+                        NavigationLink(destination: DetailView(entry: entry)) {
                             Grid(alignment: .leading, verticalSpacing: 10) {
-                                //                        GridRow {
-                                //                            if entry != nil {
-                                //                                Text("\(entry.date.formatted(date: .long, time: .omitted))").bold().font(.headline).italic()
-                                //                            } else {
-                                //                                Text("Add your first log!").bold().font(.headline).italic()
-                                //                            }
+                                
                                 Text("\(entry.date.formatted(date: .long, time: .omitted))").bold().font(.headline).italic()
                                 //                        }
                                 GridRow {
@@ -51,7 +49,6 @@ struct LogsView: View {
                                 }
                             }
                         }
-
                     }
                     .swipeActions {
                         Button(role: .destructive) {

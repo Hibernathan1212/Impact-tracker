@@ -8,25 +8,59 @@
 import Foundation
 import SwiftUI
 
-struct JournalDetailView: View {
+struct DetailView: View {
     let entry: Entry
-
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-//            Text(entry.title)
-//                .font(.largeTitle)
-//                .padding(.bottom, 5)
-            Text(entry.date, style: .date)
-                .font(.subheadline)
-                .foregroundColor(.gray)
-            Divider()
-            ScrollView {
-//                Text(entry.content)
-//                    .font(.body)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                // Date header
+                Text(entry.date, style: .date)
+                    .font(.headline)
+                    .foregroundColor(.gray)
+                    .padding(.bottom, 8)
+                
+                Divider()
+                
+                // List all components
+                ForEach(Array(entry.components.sorted { $0.key.displayName < $1.key.displayName }), id: \.key) { component, value in
+                    HStack {
+                        Text(component.displayName)
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Text("\(String(format: "%.1f", value))\(component.unit)")
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.vertical, 4)
+                }
+                
+                // Summary section
+                VStack(alignment: .leading, spacing: 12) {
+                    Divider()
+                        .padding(.vertical, 8)
+                    
+                    Grid(alignment: .leading, verticalSpacing: 10) {
+                        GridRow {
+                            Text("CO₂:")
+                            Text(String(format: "%.1f", entry.carbonFootprint)) + Text(" kg  ")
+                            
+                            Text("Water:")
+                            Text(String(format: "%.1f", entry.waterFootprint)) + Text(" m³  ")
+                        }
+                        
+                        GridRow {
+                            Text("Air PM:")
+                            Text(String(format: "%.1f", entry.airFootprint)) + Text(" g  ")
+                            
+                            Text("Waste:")
+                            Text(String(format: "%.1f", entry.wasteFootprint)) + Text(" kg  ")
+                        }
+                    }
+                }
             }
+            .padding()
         }
-        .padding()
-        .navigationTitle("Entry")
+        .navigationTitle("Entry Details")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
