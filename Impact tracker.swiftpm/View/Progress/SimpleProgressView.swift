@@ -19,19 +19,19 @@ struct SimpleProgressView: View {
                 .fontWeight(.bold)
         } else {
             VStack {
-                Text("Progress").font(.title3)
+//                Text("Carbon Footprint").font(.title3).padding()
                 Chart(entries) { entry in
                     Plot {
                         BarMark(x: .value("Day", entry.date, unit: .day),
                                  y: .value("Carbon Footprint", entry.carbonFootprint))
                     }
-                    .interpolationMethod(.catmullRom)
                 }
+                .chartYAxisLabel("KG")
                 .chartXAxis {
                     AxisMarks { _ in
                         AxisGridLine()
                         AxisValueLabel(format:
-                                .dateTime.day(.defaultDigits), centered: true)
+                                .dateTime.day(), centered: true)
                     }
                 }
                 .chartYAxis {

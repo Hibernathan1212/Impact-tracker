@@ -25,9 +25,11 @@ struct DetailProgressView: View {
                     Chart(entries) { entry in
                         Plot {
                             BarMark(x: .value("Day", entry.date, unit: .day),
-                                     y: .value("Value", entry.components[selection.componentSelection!] ?? 0 ))
+                                    y: .value("Value", entry.components[selection.componentSelection!] ?? 0 ))
                         }
-                        .interpolationMethod(.catmullRom)
+                    }
+                    .chartYAxisLabel(position: .top, alignment: .trailing) {
+                        Text("\(selection.unit)")
                     }
                     .chartXAxis {
                         AxisMarks { _ in
@@ -51,7 +53,9 @@ struct DetailProgressView: View {
                             BarMark(x: .value("Day", entry.date, unit: .day),
                                      y: .value("Value", selection.getOverviewValue(entry: entry)))
                         }
-                        .interpolationMethod(.catmullRom)
+                    }
+                    .chartYAxisLabel(position: .top, alignment: .trailing) {
+                        Text("\(selection.unit)")
                     }
                     .chartXAxis {
                         AxisMarks { _ in
@@ -239,6 +243,37 @@ enum Selection: Identifiable, CaseIterable, Codable  {
             case .fridge: return "Fridge"
             case .ac: return "AC"
             case .heater: return "Heater"
+        }
+    }
+    
+    var unit: String {
+        switch self {
+            case .carbonFootprint:  " kg"
+            case .waterFootprint:   " m³"
+            case .airFootprint:     " g"
+            case .wasteFootprint:   " kg"
+            case .plasticFootprint: " kg"
+            case .distance:         " km"
+            case .car:              " km"
+            case .plane:            " km"
+            case .publicTransport:  " km"
+            case .bike:             " km"
+            case .walk:             " km"
+            case .fruit:            " kg"
+            case .vegetables:       " kg"
+            case .poultry:          " kg"
+            case .beef:             " kg"
+            case .fish:             " kg"
+            case .dairy:            " kg"
+            case .grain:            " kg"
+            case .plastics:         " items"
+            case .paper:            " items"
+            case .clothes:          " items"
+            case .electronics:      " items"
+            case .screenTime:       " hours"
+            case .fridge:           " hours"
+            case .ac:               " hours"
+            case .heater:           " hours"
         }
     }
     

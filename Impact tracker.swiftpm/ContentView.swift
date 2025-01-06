@@ -19,7 +19,7 @@ struct ContentView: View {
                         } label: {
                             SimpleProgressView(entries: $entries)
                         }
-                        .padding()
+                        .padding(.vertical, 8)
                     }
                     .frame(height: 360)
                     
