@@ -42,25 +42,25 @@ struct DetailView: View {
                     Grid(alignment: .leading, verticalSpacing: 10) {
                         GridRow {
                             Text("CO₂:")
-                            Text(String(format: "%.3g", entry.carbonFootprint)) + Text(" kg ")
+                            Text(String(format: "%.2g", entry.carbonFootprint)) + Text("kg ")
                             
                             Text("Water:")
-                            Text(String(format: "%.3g", entry.waterFootprint)) + Text(" m³ ")
+                            Text(String(format: "%.2g", entry.waterFootprint)) + Text("m³ ")
                         }
                         
                         GridRow {
                             Text("Air PM:")
-                            Text(String(format: "%.3g", entry.airFootprint)) + Text(" g ")
+                            Text(String(format: "%.2g", entry.airFootprint)) + Text("g ")
                             
                             Text("Waste:")
-                            Text(String(format: "%.3g", entry.wasteFootprint)) + Text(" kg ")
+                            Text(String(format: "%.2g", entry.wasteFootprint)) + Text("kg ")
                         }
                         GridRow {
                             Text("Plastic:")
-                            Text(String(format: "%.3g", entry.airFootprint)) + Text(" kg ")
+                            Text(String(format: "%.2g", entry.airFootprint)) + Text("kg ")
                             
                             Text("Distance:")
-                            Text(String(format: "%.3g", entry.distance)) + Text(" km ")
+                            Text(String(format: "%.2g", entry.distance)) + Text("km ")
                         }
                     }
                 }
