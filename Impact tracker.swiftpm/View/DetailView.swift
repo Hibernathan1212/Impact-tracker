@@ -22,7 +22,6 @@ struct DetailView: View {
                 
                 Divider()
                 
-                // List all components
                 ForEach(Array(entry.components.sorted { $0.key.displayName < $1.key.displayName }), id: \.key) { component, value in
                     HStack {
                         Text(component.displayName)
@@ -34,12 +33,11 @@ struct DetailView: View {
                     .padding(.vertical, 4)
                 }
                 
-                // Summary section
                 VStack(alignment: .leading, spacing: 12) {
                     Divider()
                         .padding(.vertical, 8)
                     
-                    Grid(alignment: .leading, verticalSpacing: 10) {
+                    Grid(alignment: .center, verticalSpacing: 10) {
                         GridRow {
                             Text("CO₂:")
                             Text(String(format: "%.2g", entry.carbonFootprint)) + Text("kg ")

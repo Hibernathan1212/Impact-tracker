@@ -100,7 +100,6 @@ struct ContentView: View {
                     return
                 }
         
-    //        if let window = UIApplication.shared.windows.first {
             if window.overrideUserInterfaceStyle == .light {
                 window.overrideUserInterfaceStyle = .dark
             } else if window.overrideUserInterfaceStyle == .dark {
@@ -108,7 +107,6 @@ struct ContentView: View {
             } else {
                 window.overrideUserInterfaceStyle = .light
             }
-    //        }
     }
 
     private func deleteAllData() {

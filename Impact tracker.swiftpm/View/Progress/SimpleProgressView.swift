@@ -18,8 +18,9 @@ struct SimpleProgressView: View {
                 .font(.title)
                 .fontWeight(.bold)
         } else {
-            VStack {
-//                Text("Carbon Footprint").font(.title3).padding()
+            VStack(alignment: .leading) {
+                Text("Carbon Footprint")
+                    .font(.title)
                 Chart(entries) { entry in
                     Plot {
                         BarMark(x: .value("Day", entry.date, unit: .day),

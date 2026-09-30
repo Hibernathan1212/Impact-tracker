@@ -17,7 +17,7 @@ let package = Package(
             name: "Impact tracker",
             targets: ["AppModule"],
             bundleIdentifier: "Nathan.Impact-tracker",
-            teamIdentifier: "D596QL4M8J",
+            teamIdentifier: "P6PV2R9443",
             displayVersion: "1.0",
             bundleVersion: "1",
             appIcon: .placeholder(icon: .cloud),

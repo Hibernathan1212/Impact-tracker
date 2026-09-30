@@ -12,10 +12,7 @@ struct LogsView: View {
     @Binding var entries: [Entry]
     
     @State var showEditEntry = false
-
-//    @State private var showAddEntry = false
-//    @State private var showSettings = false
-
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -25,7 +22,6 @@ struct LogsView: View {
                             Grid(alignment: .leading, verticalSpacing: 10) {
                                 
                                 Text("\(entry.date.formatted(date: .long, time: .omitted))").bold().font(.headline).italic()
-                                //                        }
                                 GridRow {
                                     Text("CO₂: ") +
                                     Text(String(format: "%.2g", entry.carbonFootprint)).italic() + Text("kg")
